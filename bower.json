@@ -1,0 +1,24 @@
+{
+  "name": "ng-pl-upload",
+  "version": "0.2.0",
+  "homepage": "https://github.com/ecentinela/ng-pl-upload",
+  "authors": [
+    "Javier Martínez Fernández <ecentinela@gmail.com>"
+  ],
+  "description": "Angular directive to work with Plupload 2.",
+  "main": "dist/ng-pl-upload.js",
+  "keywords": [
+    "angular",
+    "plupload",
+    "directive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.2.9",
+    "plupload": "~2.1.1"
+  }
+}
