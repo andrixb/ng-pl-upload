@@ -1,10 +1,13 @@
 /**!
  * AngularJS file upload directive with plUpload
  * @author Javier Martínez <ecentinela@gmail.com>
- * @version 0.1.0
+ * @version 0.2.0
  */
 
+/* global angular, plupload */
+
 (function () {
+  'use strict';
 
   angular.module('ngPlUpload', []).directive(
     'ngPlUpload',
@@ -12,12 +15,12 @@
       function () {
         return {
           scope: {
-            'ngPlUploadHeadersModel': '=',
-            'ngPlUploadMultiParamsModel': '=',
-            'ngPlUploadFiltersModel': '=',
             'ngPlUploadFilesModel': '=',
-            'ngPlUploadProgressModel': '=',
-            'ngPlUploadInstance': '='
+            'ngPlUploadFiltersModel': '=',
+            'ngPlUploadHeadersModel': '=',
+            'ngPlUploadInstance': '=',
+            'ngPlUploadMultiParamsModel': '=',
+            'ngPlUploadProgressModel': '='
           },
           link: function ($scope, $element, $attrs) {
             var
@@ -181,20 +184,128 @@
               }
             });
 
+            if ($attrs.ngPlInit) {
+              uploader.bind('Init',function (up) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlInit](up);
+                });
+              });
+            }
+
+            if ($attrs.ngPlPostInit) {
+              uploader.bind('PostInit',function (up) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlPostInit](up);
+                });
+              });
+            }
+
+            if ($attrs.ngPlOptionChanged) {
+              uploader.bind('OptionChanged',function (up, name, newValue, oldValue) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlOptionChanged](up, name, newValue, oldValue);
+                });
+              });
+            }
+
+            if ($attrs.ngPlRefresh) {
+              uploader.bind('Refresh',function (up) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlRefresh](up);
+                });
+              });
+            }
+
+            if ($attrs.ngPlStateChanged) {
+              uploader.bind('StateChanged',function (up) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlStateChanged](up);
+                });
+              });
+            }
+
+            if ($attrs.ngPlUploadFile) {
+              uploader.bind('UploadFile',function (up, file) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlUploadFile](up, file);
+                });
+              });
+            }
+
+            if ($attrs.ngPlBeforeUpload) {
+              uploader.bind('BeforeUpload',function (up, file) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlBeforeUpload](up, file);
+                });
+              });
+            }
+
+            if ($attrs.ngPlQueueChanged) {
+              uploader.bind('QueueChanged',function (up) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlQueueChanged](up);
+                });
+              });
+            }
+
+            if ($attrs.ngPlUploadProgress) {
+              uploader.bind('UploadProgress',function (up, file) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlUploadProgress](up, file);
+                });
+              });
+            }
+
+            if ($attrs.ngPlFilesRemoved) {
+              uploader.bind('FilesRemoved',function (up, files) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlFilesRemoved](up, files);
+                });
+              });
+            }
+
+            if ($attrs.ngPlFileFiltered) {
+              uploader.bind('FileFiltered',function (up, file) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlFileFiltered](up, file);
+                });
+              });
+            }
+
+            if ($attrs.ngPlFilesAdded) {
+              uploader.bind('FilesAdded',function (up, files) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlFilesAdded](up, files);
+                });
+              });
+            }
+
+            if ($attrs.ngPlChunkUploaded) {
+              uploader.bind('ChunkUploaded',function (up, file, response) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlChunkUploaded](up, file, response);
+                });
+              });
+            }
+
             if ($attrs.ngPlUploadComplete) {
-              uploader.bind('UploadComplete',function () {
-                $scope.$parent.$apply($attrs.ngPlUploadComplete);
+              uploader.bind('UploadComplete',function (up, files) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlUploadComplete](up, files);
+                });
+              });
+            }
+
+            if ($attrs.ngPlUploadError) {
+              uploader.bind('Error', function(up, error) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlUploadError](up, error);
+                });
               });
             }
 
             if ($attrs.ngPlUploadInstance) {
               $scope.ngPlUploadInstance = uploader;
-            }
-
-            if ($attrs.ngPlUploadError) {
-              uploader.bind('Error', function() {
-                $scope.$parent.$apply($attrs.ngPlUploadError);
-              });
             }
           }
         };
