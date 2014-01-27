@@ -280,6 +280,14 @@
               });
             }
 
+            if ($attrs.ngPlFileUploaded) {
+              uploader.bind('FileUploaded',function (up, file, response) {
+                $scope.$parent.$apply(function (self) {
+                  self[$attrs.ngPlFileUploaded](up, file, response);
+                });
+              });
+            }
+
             if ($attrs.ngPlChunkUploaded) {
               uploader.bind('ChunkUploaded',function (up, file, response) {
                 $scope.$parent.$apply(function (self) {
