@@ -68,6 +68,8 @@
 
             if (!$attrs.ngPlUploadPreventDuplicates) {
               $attrs.$set('ngPlUploadPreventDuplicates', false);
+            } else {
+              $attrs.$set('ngPlUploadPreventDuplicates', $attrs.ngPlUploadPreventDuplicates === 'true');
             }
 
             if (!$attrs.ngPlUploadMaxRetries) {
@@ -84,6 +86,8 @@
 
             if (!$attrs.ngPlUploadMultiSelection) {
               $attrs.$set('ngPlUploadMultiSelection', true);
+            } else {
+              $attrs.$set('ngPlUploadMultiSelection', $attrs.ngPlUploadMultiSelection === 'true');
             }
 
             if (!$attrs.ngPlUploadRequiredFeatures) {
@@ -92,6 +96,8 @@
 
             if (!$attrs.ngPlUploadUniqueNames) {
               $attrs.$set('ngPlUploadUniqueNames', false);
+            } else {
+              $attrs.$set('ngPlUploadUniqueNames', $attrs.ngPlUploadUniqueNames === 'true');
             }
 
             if (!$attrs.ngPlUploadRuntimes) {
@@ -112,6 +118,8 @@
 
             if (!$attrs.ngPlUploadAutoUpload) {
               $attrs.$set('ngPlUploadAutoUpload', true);
+            } else {
+              $attrs.$set('ngPlUploadAutoUpload', $attrs.ngPlUploadAutoUpload === 'true');
             }
 
             options = {
