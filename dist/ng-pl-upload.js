@@ -66,10 +66,10 @@
               $attrs.$set('ngPlUploadMaxFileSize', '10mb');
             }
 
-            if (!$attrs.ngPlUploadPreventDuplicates) {
-              $attrs.$set('ngPlUploadPreventDuplicates', false);
-            } else {
+            if ($attrs.ngPlUploadPreventDuplicates) {
               $attrs.$set('ngPlUploadPreventDuplicates', $attrs.ngPlUploadPreventDuplicates === 'true');
+            } else {
+              $attrs.$set('ngPlUploadPreventDuplicates', false);
             }
 
             if (!$attrs.ngPlUploadMaxRetries) {
@@ -84,20 +84,20 @@
               $attrs.$set('ngPlUploadDropElement', false);
             }
 
-            if (!$attrs.ngPlUploadMultiSelection) {
-              $attrs.$set('ngPlUploadMultiSelection', true);
-            } else {
+            if ($attrs.ngPlUploadMultiSelection) {
               $attrs.$set('ngPlUploadMultiSelection', $attrs.ngPlUploadMultiSelection === 'true');
+            } else {
+              $attrs.$set('ngPlUploadMultiSelection', true);
             }
 
             if (!$attrs.ngPlUploadRequiredFeatures) {
               $attrs.$set('ngPlUploadRequiredFeatures', {});
             }
 
-            if (!$attrs.ngPlUploadUniqueNames) {
-              $attrs.$set('ngPlUploadUniqueNames', false);
-            } else {
+            if ($attrs.ngPlUploadUniqueNames) {
               $attrs.$set('ngPlUploadUniqueNames', $attrs.ngPlUploadUniqueNames === 'true');
+            } else {
+              $attrs.$set('ngPlUploadUniqueNames', false);
             }
 
             if (!$attrs.ngPlUploadRuntimes) {
@@ -116,10 +116,10 @@
               $attrs.$set('ngPlUploadSilverlightXapUrl', 'lib/plupload/plupload.flash.silverlight.xap');
             }
 
-            if (!$attrs.ngPlUploadAutoUpload) {
-              $attrs.$set('ngPlUploadAutoUpload', true);
-            } else {
+            if ($attrs.ngPlUploadAutoUpload) {
               $attrs.$set('ngPlUploadAutoUpload', $attrs.ngPlUploadAutoUpload === 'true');
+            } else {
+              $attrs.$set('ngPlUploadAutoUpload', true);
             }
 
             options = {
