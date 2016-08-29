@@ -164,7 +164,7 @@
                 });
               }
 
-              if ($attrs.ngPlUploadAutoUpload === 'true') {
+              if ($attrs.ngPlUploadAutoUpload) {
                 uploader.start();
               }
             });
